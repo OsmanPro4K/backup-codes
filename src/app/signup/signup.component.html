@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card text-bg-dark p-3 shadow-lg" style="border: none">
+        <div class="card-header d-flex justify-content-between">
+          <h4 class="mb-0">Sign Up</h4>
+          <button class="btn btn-primary rounded-pill" (click)="onNextClicked()">
+            Sign In Here
+          </button>
+        </div>
+        <div class="card-body rounded-bottom-3">
+          <form (submit)="onSignUpClicked($event, emailInput.value, passwordInput.value)">
+            <div class="form-group mb-3">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+                required
+                #emailInput
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+                required
+                #passwordInput
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary rounded-pill w-100 mt-3"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 text-bg-dark rounded-3" *ngIf="backupCodes.length > 0 && responseMessage === 'Success'">
+      <div class="p-3">
+        <div class="d-flex justify-content-between">
+          <h4 class="title mt-2 mb-3">Backup Codes</h4>
+          <button class="btn btn-dark p-0 ps-3 pe-3 border border-light"(click)="copyToClipboard()">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+        <hr style="color: black;">
+        <ul class="list-group mb-2 text-center" *ngFor="let code of backupCodes">
+          <li class="list-group-item text-bg-dark" style="border: none;">
+            <p [innerHTML]="code"></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
